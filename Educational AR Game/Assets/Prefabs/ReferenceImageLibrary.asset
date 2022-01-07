@@ -23,5 +23,15 @@ MonoBehaviour:
       m_GuidHigh: 2593283520597008921
     m_Size: {x: 0.3, y: 0.16890001}
     m_SpecifySize: 1
-    m_Name: Shrek-Eddie-Murphy-1
+    m_Name: shrek
     m_Texture: {fileID: 2800000, guid: 40018199f5cc84a019220f479f31fd23, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 5204212369002674122
+      m_GuidHigh: 8128620137998970273
+    m_SerializedTextureGuid:
+      m_GuidLow: 13013785765753945125
+      m_GuidHigh: 12483847030902926763
+    m_Size: {x: 0.3, y: 0.3123793}
+    m_SpecifySize: 1
+    m_Name: puss
+    m_Texture: {fileID: 2800000, guid: 36cc7c254134b49aabad487bbb883fad, type: 3}
