@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.ARFoundation;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(ARTrackedImageManager))]
 public class ImageTracking : MonoBehaviour
@@ -13,6 +14,8 @@ public class ImageTracking : MonoBehaviour
     private Dictionary<string, GameObject> spawnedPrefabs = new Dictionary<string, GameObject>();
     private ARTrackedImageManager trackedImageManager;
 
+    public Text testText;
+
     private void Awake()
     {
         trackedImageManager = FindObjectOfType<ARTrackedImageManager>();
@@ -20,6 +23,8 @@ public class ImageTracking : MonoBehaviour
         foreach(GameObject prefab in placeablePrefabs)
         {
             GameObject newPrefab = Instantiate(prefab, Vector3.zero, Quaternion.identity);
+            newPrefab.transform.localScale = Vector3.zero;
+            newPrefab.name = prefab.name;
             spawnedPrefabs.Add(newPrefab.name, newPrefab);
         }
     }
@@ -47,18 +52,21 @@ public class ImageTracking : MonoBehaviour
         foreach(ARTrackedImage trackedImage in eventArgs.removed)
         {
             spawnedPrefabs[trackedImage.referenceImage.name].SetActive(false);
+            testText.text = "Nothing";
         }
     }
 
     private void UpdateImage(ARTrackedImage trackedImage)
     {
         string name = trackedImage.referenceImage.name;
+        testText.text = name;
         Vector3 position = trackedImage.transform.position;
         Quaternion rotation = trackedImage.transform.rotation;
 
         GameObject prefab = spawnedPrefabs[name];
         prefab.transform.position = position;
-        prefab.transform.rotation = rotation;
+        //prefab.transform.rotation = rotation;
+        prefab.transform.localScale = new Vector3(trackedImage.size.x * 2, trackedImage.size.x * 2, trackedImage.size.y * 2);
         prefab.SetActive(true);
 
         //foreach(GameObject go in spawnedPrefabs.Values)
