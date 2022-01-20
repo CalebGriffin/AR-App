@@ -49,6 +49,7 @@ public class Infocard : MonoBehaviour
     {
         cameraSource.sourceTransform = GameObject.FindGameObjectWithTag("MainCamera").transform;
         lookAtConstraint.AddSource(cameraSource);
+        lookAtConstraint.constraintActive = true;
         // Play the enter animation
         animator.Play("Base Layer.EnterAnimation");
     }
