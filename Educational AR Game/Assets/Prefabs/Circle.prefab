@@ -79,6 +79,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabHolder: {fileID: 1319082342878189690}
   infoCard: {fileID: 2202044401728493920}
+  arCamera: {fileID: 0}
   multiplier: 0.05
   sensitivity: 0.5
   spinningSpeed: 7
