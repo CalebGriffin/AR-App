@@ -7,6 +7,7 @@ public class Object : MonoBehaviour
 {
     [SerializeField] private GameObject prefabHolder;
     [SerializeField] private GameObject infoCard;
+    [SerializeField] private GameObject arCamera;
 
     [SerializeField] private float multiplier;
 
@@ -31,6 +32,7 @@ public class Object : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        arCamera = GameObject.FindGameObjectWithTag("MainCamera");
         animator = GetComponent<Animator>();
     }
 
@@ -52,7 +54,7 @@ public class Object : MonoBehaviour
             {
                 touchTime += Time.deltaTime;
                 tPosDelta = tCurrentPos - tPrevPos;
-                transform.Rotate(transform.up, (-Vector3.Dot(tPosDelta, Camera.main.transform.right) * sensitivity), Space.World);
+                transform.Rotate(transform.up, (-Vector3.Dot(tPosDelta, arCamera.transform.right) * sensitivity), Space.World);
                 isBeingSpun = true;
             }
             else
@@ -69,7 +71,7 @@ public class Object : MonoBehaviour
         if (!isBeingSpun)
         {
             Debug.Log("isBeingSpun is false");
-            transform.Rotate(transform.up, Vector3.Dot(new Vector3(-(spinningSpeed / 100f), 0f, 0f), Camera.main.transform.right), Space.World);
+            transform.Rotate(transform.up, Vector3.Dot(new Vector3(-(spinningSpeed / 100f), 0f, 0f), arCamera.transform.right), Space.World);
         }
 
         tPrevPos = tCurrentPos;
