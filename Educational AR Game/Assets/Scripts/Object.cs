@@ -54,7 +54,9 @@ public class Object : MonoBehaviour
             {
                 touchTime += Time.deltaTime;
                 tPosDelta = tCurrentPos - tPrevPos;
-                transform.Rotate(transform.up, (-Vector3.Dot(tPosDelta, arCamera.transform.right) * sensitivity), Space.World);
+                transform.RotateAround(transform.position, Vector3.up, -(tPosDelta.x * sensitivity));
+                //transform.Rotate(transform.up, (-Vector3.Dot(tPosDelta, Vector3.right) * sensitivity), Space.Self);
+                //transform.Rotate(0f, (tPosDelta.x * sensitivity), 0f, Space.World);
                 isBeingSpun = true;
             }
             else
@@ -71,7 +73,9 @@ public class Object : MonoBehaviour
         if (!isBeingSpun)
         {
             Debug.Log("isBeingSpun is false");
-            transform.Rotate(transform.up, Vector3.Dot(new Vector3(-(spinningSpeed / 100f), 0f, 0f), arCamera.transform.right), Space.World);
+            transform.RotateAround(transform.position, Vector3.up, -(spinningSpeed / 10f));
+            //transform.Rotate(transform.up, Vector3.Dot(new Vector3(-(spinningSpeed / 10f), 0f, 0f), Vector3.right), Space.Self);
+            //transform.Rotate(0f, 1 * sensitivity, 0f, Space.World);
         }
 
         tPrevPos = tCurrentPos;
@@ -84,12 +88,15 @@ public class Object : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
+        infoCard.transform.localScale = Vector3.zero;
         infoCard.SetActive(true);
+        infoCard.GetComponent<Infocard>().AnimateIn();
+        infoCard.GetComponent<Infocard>().isActive = true;
 
         this.gameObject.SetActive(false);
     }
 
-    void OnEnable()
+    public void AnimateIn()
     {
         // Play the enter animation
         animator.Play("Base Layer.EnterAnimation");

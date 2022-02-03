@@ -26,6 +26,7 @@ public class ImageTracking : MonoBehaviour
             newPrefab.transform.localScale = Vector3.zero;
             newPrefab.name = prefab.name;
             spawnedPrefabs.Add(newPrefab.name, newPrefab);
+            //newPrefab.SetActive(false);
         }
     }
 
@@ -43,7 +44,7 @@ public class ImageTracking : MonoBehaviour
     {
         foreach(ARTrackedImage trackedImage in eventArgs.added)
         {
-            UpdateImage(trackedImage);
+            AddImage(trackedImage);
         }
         foreach(ARTrackedImage trackedImage in eventArgs.updated)
         {
@@ -56,7 +57,7 @@ public class ImageTracking : MonoBehaviour
         }
     }
 
-    private void UpdateImage(ARTrackedImage trackedImage)
+    private void AddImage(ARTrackedImage trackedImage)
     {
         string name = trackedImage.referenceImage.name;
         testText.text = name;
@@ -65,7 +66,20 @@ public class ImageTracking : MonoBehaviour
 
         GameObject prefab = spawnedPrefabs[name];
         prefab.transform.position = position;
-        //prefab.transform.rotation = rotation;
+        prefab.transform.rotation = rotation;
+        prefab.transform.localScale = new Vector3(trackedImage.size.x * 2, trackedImage.size.x * 2, trackedImage.size.y * 2);
+        prefab.SetActive(true);
+        prefab.GetComponent<PrefabHolder>().Enable();
+    }
+
+    private void UpdateImage(ARTrackedImage trackedImage)
+    {
+        string name = trackedImage.referenceImage.name;
+        testText.text = name;
+        Vector3 position = trackedImage.transform.position;
+
+        GameObject prefab = spawnedPrefabs[name];
+        prefab.transform.position = position;
         prefab.transform.localScale = new Vector3(trackedImage.size.x * 2, trackedImage.size.x * 2, trackedImage.size.y * 2);
         prefab.SetActive(true);
 
