@@ -16,5 +16,6 @@ public class CameraHolder : MonoBehaviour
     void Update()
     {
         transform.position = cameraObj.transform.position;
+        transform.localRotation = cameraObj.transform.localRotation;
     }
 }

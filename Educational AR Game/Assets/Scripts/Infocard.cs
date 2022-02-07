@@ -5,7 +5,7 @@ using UnityEngine.Animations;
 using UnityEngine.XR;
 using UnityEngine.XR.ARFoundation;
 
-[RequireComponent(typeof(Animator), typeof(LookAtConstraint))]
+[RequireComponent(typeof(Animator))]
 public class Infocard : MonoBehaviour
 {
     [SerializeField] private GameObject prefabHolder;
@@ -17,17 +17,12 @@ public class Infocard : MonoBehaviour
 
     private Animator animator;
 
-    private LookAtConstraint lookAtConstraint;
-    private ConstraintSource cameraSource;
-
     public bool isActive = false;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-
-        //lookAtConstraint = GetComponent<LookAtConstraint>();
     }
 
     void Awake()
@@ -39,12 +34,13 @@ public class Infocard : MonoBehaviour
     void Update()
     {
         // NOTE: NewValue = (((OldValue - OldMin) * NewRange) / OldRange) + NewMin
-        multiplier = (((transform.localRotation.eulerAngles.x - 0) * 0.15f) / 90) + 0.05f;
+        multiplier = (((-transform.localRotation.eulerAngles.x - 0) * 0.15f) / 90) + 0.05f;
 
-        transform.position = prefabHolder.transform.position + (Vector3.up * multiplier);
+        transform.position = prefabHolder.transform.position + (Vector3.up * -multiplier);
 
 
-        transform.LookAt(cameraObj.transform, Vector3.right);
+        transform.LookAt(cameraObj.transform, cameraObj.transform.up);
+        transform.Rotate(-90f, -180f, 0f);
         //transform.LookAt(Camera.main.transform);
     }
 
@@ -63,10 +59,6 @@ public class Infocard : MonoBehaviour
 
     public void AnimateIn()
     {
-        //cameraSource.sourceTransform = GameObject.FindGameObjectWithTag("MainCamera").transform;
-        //lookAtConstraint.AddSource(cameraSource);
-        //lookAtConstraint.constraintActive = true;
-
         // Play the enter animation
         animator.Play("Base Layer.EnterAnimation");
     }
