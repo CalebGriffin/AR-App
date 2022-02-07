@@ -32,6 +32,7 @@ public class Infocard : MonoBehaviour
 
     void Awake()
     {
+        cameraObj = GameObject.Find("Camera Holder");
     }
 
     // Update is called once per frame
@@ -42,14 +43,9 @@ public class Infocard : MonoBehaviour
 
         transform.position = prefabHolder.transform.position + (Vector3.up * multiplier);
 
-        if (isActive)
-        {
-            cameraObj = GameObject.Find("Camera Holder");
-            isActive = false;
-        }
 
-        //transform.LookAt(cameraObj.transform);
-        transform.LookAt(Camera.main.transform);
+        transform.LookAt(cameraObj.transform, Vector3.right);
+        //transform.LookAt(Camera.main.transform);
     }
 
     IEnumerator AnimateOut()
@@ -59,8 +55,8 @@ public class Infocard : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        objectObj.GetComponent<Object>().AnimateIn();
         objectObj.SetActive(true);
+        objectObj.GetComponent<Object>().AnimateIn();
 
         this.gameObject.SetActive(false);
     }

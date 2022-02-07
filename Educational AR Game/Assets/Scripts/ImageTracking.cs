@@ -81,7 +81,10 @@ public class ImageTracking : MonoBehaviour
         GameObject prefab = spawnedPrefabs[name];
         prefab.transform.position = position;
         prefab.transform.localScale = new Vector3(trackedImage.size.x * 2, trackedImage.size.x * 2, trackedImage.size.y * 2);
-        prefab.SetActive(true);
+        if (prefab.activeSelf == false)
+        {
+            prefab.SetActive(true);
+        }
 
         //foreach(GameObject go in spawnedPrefabs.Values)
         //{

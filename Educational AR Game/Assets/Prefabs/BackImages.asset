@@ -22,7 +22,7 @@ MonoBehaviour:
       m_GuidLow: 17236460731790955394
       m_GuidHigh: 3070049570397368249
     m_Size: {x: 0.15, y: 0.15}
-    m_SpecifySize: 0
+    m_SpecifySize: 1
     m_Name: Circle
     m_Texture: {fileID: 2800000, guid: 7f5e938235b6ef34b92f6086d1019b2a, type: 3}
   - m_SerializedGuid:
@@ -32,7 +32,7 @@ MonoBehaviour:
       m_GuidLow: 12413150019436595455
       m_GuidHigh: 6312786129473128121
     m_Size: {x: 0.15, y: 0.15}
-    m_SpecifySize: 0
+    m_SpecifySize: 1
     m_Name: Cube
     m_Texture: {fileID: 2800000, guid: cc26c8ff5e2cac44b94642c689859b57, type: 3}
   - m_SerializedGuid:
@@ -42,7 +42,7 @@ MonoBehaviour:
       m_GuidLow: 16596916020722713816
       m_GuidHigh: 804619264278181897
     m_Size: {x: 0.15, y: 0.15}
-    m_SpecifySize: 0
+    m_SpecifySize: 1
     m_Name: Cylinder
     m_Texture: {fileID: 2800000, guid: c62ac4d8172fe65409b8bc32f5942a0b, type: 3}
   - m_SerializedGuid:
@@ -52,7 +52,7 @@ MonoBehaviour:
       m_GuidLow: 1518993306407054761
       m_GuidHigh: 15955647950599195690
     m_Size: {x: 0.15, y: 0.15}
-    m_SpecifySize: 0
+    m_SpecifySize: 1
     m_Name: Heptagon
     m_Texture: {fileID: 2800000, guid: 3c96ada98c5d15142a8ca74046d96ddd, type: 3}
   - m_SerializedGuid:
@@ -62,7 +62,7 @@ MonoBehaviour:
       m_GuidLow: 12431210438310700837
       m_GuidHigh: 12298286916163708970
     m_Size: {x: 0.15, y: 0.15}
-    m_SpecifySize: 0
+    m_SpecifySize: 1
     m_Name: Hexagon
     m_Texture: {fileID: 2800000, guid: bfa327258807ac842aa8c587ca4aacaa, type: 3}
   - m_SerializedGuid:
@@ -72,7 +72,7 @@ MonoBehaviour:
       m_GuidLow: 10039892955940821889
       m_GuidHigh: 15953538929708125144
     m_Size: {x: 0.15, y: 0.15}
-    m_SpecifySize: 0
+    m_SpecifySize: 1
     m_Name: Hexagonal Prism
     m_Texture: {fileID: 2800000, guid: 25cc9b81dd738b54d84b9e8f215b66dd, type: 3}
   - m_SerializedGuid:
@@ -82,7 +82,7 @@ MonoBehaviour:
       m_GuidLow: 564331127206841125
       m_GuidHigh: 11278566376823226041
     m_Size: {x: 0.15, y: 0.15}
-    m_SpecifySize: 0
+    m_SpecifySize: 1
     m_Name: Octagon
     m_Texture: {fileID: 2800000, guid: 94dc0b25e82b07d4b97e36025d84859c, type: 3}
   - m_SerializedGuid:
@@ -92,7 +92,7 @@ MonoBehaviour:
       m_GuidLow: 10895422069413114429
       m_GuidHigh: 4749188897652501480
     m_Size: {x: 0.15, y: 0.15}
-    m_SpecifySize: 0
+    m_SpecifySize: 1
     m_Name: Pentagon
     m_Texture: {fileID: 2800000, guid: 4d51f23d50a59734e86bcedf2382e841, type: 3}
   - m_SerializedGuid:
@@ -102,7 +102,7 @@ MonoBehaviour:
       m_GuidLow: 9242740777719159204
       m_GuidHigh: 14882927963115981050
     m_Size: {x: 0.15, y: 0.15}
-    m_SpecifySize: 0
+    m_SpecifySize: 1
     m_Name: Pentagon Based Pyramid
     m_Texture: {fileID: 2800000, guid: 66f7d9a4cfc48044fa88411b21c88ace, type: 3}
   - m_SerializedGuid:
@@ -112,7 +112,7 @@ MonoBehaviour:
       m_GuidLow: 5045232440730729638
       m_GuidHigh: 12430794138977448795
     m_Size: {x: 0.15, y: 0.15}
-    m_SpecifySize: 0
+    m_SpecifySize: 1
     m_Name: Sphere
     m_Texture: {fileID: 2800000, guid: 8f083ca6442c46045b33c281680d83ac, type: 3}
   - m_SerializedGuid:
@@ -122,7 +122,7 @@ MonoBehaviour:
       m_GuidLow: 3743687805009022793
       m_GuidHigh: 8667161341467177963
     m_Size: {x: 0.15, y: 0.15}
-    m_SpecifySize: 0
+    m_SpecifySize: 1
     m_Name: Square
     m_Texture: {fileID: 2800000, guid: 47864f49403933f4eb3326c951f14778, type: 3}
   - m_SerializedGuid:
@@ -132,7 +132,7 @@ MonoBehaviour:
       m_GuidLow: 10616195578630496341
       m_GuidHigh: 6023426532888099146
     m_Size: {x: 0.15, y: 0.15}
-    m_SpecifySize: 0
+    m_SpecifySize: 1
     m_Name: Square Based Pyramid
     m_Texture: {fileID: 2800000, guid: ba57e0554da193544a3975a784829753, type: 3}
   - m_SerializedGuid:
@@ -142,7 +142,7 @@ MonoBehaviour:
       m_GuidLow: 2284653941920305865
       m_GuidHigh: 6030860685410666827
     m_Size: {x: 0.15, y: 0.15}
-    m_SpecifySize: 0
+    m_SpecifySize: 1
     m_Name: Triangle
     m_Texture: {fileID: 2800000, guid: d2db12c9b8a71fb44b89c52bd7ebb153, type: 3}
   - m_SerializedGuid:
@@ -152,6 +152,6 @@ MonoBehaviour:
       m_GuidLow: 15007294511319244443
       m_GuidHigh: 231143894275749403
     m_Size: {x: 0.15, y: 0.15}
-    m_SpecifySize: 0
+    m_SpecifySize: 1
     m_Name: Triangular Prism
     m_Texture: {fileID: 2800000, guid: 92da5e9b9ed8d0441b764eae25303503, type: 3}
