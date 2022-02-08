@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.XR;
 using UnityEngine.XR.ARFoundation;
+using TMPro;
 
 [RequireComponent(typeof(Animator))]
 public class Infocard : MonoBehaviour
@@ -19,6 +20,8 @@ public class Infocard : MonoBehaviour
 
     public bool isActive = false;
 
+    [SerializeField] private TextMeshProUGUI infocardText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,20 +31,26 @@ public class Infocard : MonoBehaviour
     void Awake()
     {
         cameraObj = GameObject.Find("Camera Holder");
+        multiplier = objectObj.GetComponent<Object>().multiplier;
     }
 
     // Update is called once per frame
     void Update()
     {
         // NOTE: NewValue = (((OldValue - OldMin) * NewRange) / OldRange) + NewMin
-        multiplier = (((-transform.localRotation.eulerAngles.x - 0) * 0.15f) / 90) + 0.05f;
+        //multiplier = (((-transform.localRotation.eulerAngles.x - 0) * 0.15f) / 90) + 0.05f;
 
-        transform.position = prefabHolder.transform.position + (Vector3.up * -multiplier);
+        //transform.position = prefabHolder.transform.position + (Vector3.up * -(multiplier / 2));
+        transform.position = prefabHolder.transform.position + (Vector3.up * multiplier);
 
 
         transform.LookAt(cameraObj.transform, cameraObj.transform.up);
         transform.Rotate(-90f, -180f, 0f);
-        //transform.LookAt(Camera.main.transform);
+
+        //infocardText.text = $@"X: {transform.localRotation.x}
+        //Y: {transform.localRotation.y}
+        //Z: {transform.localRotation.z}
+        //Multiplier: {multiplier}";
     }
 
     IEnumerator AnimateOut()

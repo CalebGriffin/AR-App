@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SerializedLibrary: {fileID: 11400000, guid: 3cb3db4409024bf49b7e686bae2bfb63, type: 2}
-  m_MaxNumberOfMovingImages: 4
+  m_MaxNumberOfMovingImages: 6
   m_TrackedImagePrefab: {fileID: 0}
 --- !u!114 &50374090
 MonoBehaviour:
@@ -199,6 +199,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   placeablePrefabs:
   - {fileID: 1319082342878189690, guid: c3ee9c410583a224697fa18d08bd19c7, type: 3}
+  - {fileID: 6723067669133255137, guid: 80f204a93e9af404f839615ef972d6ca, type: 3}
+  - {fileID: 640733479852280618, guid: 0467267c51404413daed4af580bbb719, type: 3}
+  - {fileID: 29636875840562163, guid: 5fe78227c99ef455e99b4856600189d1, type: 3}
+  - {fileID: 9188272423875674576, guid: eaece1a645bdc479daca9c00f0b8965e, type: 3}
+  - {fileID: 3043453700141328084, guid: 87889f6984cdb47fa880ebb6a2aee157, type: 3}
+  - {fileID: 2648631366384943451, guid: 03d2e497deea748188b3d4d7a99f80be, type: 3}
+  - {fileID: 2516961568219400492, guid: bf55ba6ab903c46f1b4e98232267dcec, type: 3}
+  - {fileID: 4729234607198125151, guid: 94eca828a083f4faf8ceedeca00e795a, type: 3}
+  - {fileID: 3180835930949638529, guid: 77e23bbd80f45401da9912c28b843af2, type: 3}
+  - {fileID: 605369306707185729, guid: b27273cea47544b07b1b93fab9c5525d, type: 3}
+  - {fileID: 8612255824829946688, guid: 6fccc04f750ab4376b39e43a45530403, type: 3}
+  - {fileID: 5084579298686111066, guid: cdcc02f8267fb4cb48b5f492a018d616, type: 3}
+  - {fileID: 975581809870895306, guid: e0f24095e6091493ca556108765fda53, type: 3}
   testText: {fileID: 204932617}
 --- !u!1 &204932615
 GameObject:
@@ -351,18 +364,18 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
-  m_InnerSpotAngle: 21.802082
+  m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
-    m_Bias: 0.05
+    m_Bias: 0
     m_NormalBias: 0.4
     m_NearPlane: 0.2
     m_CullingMatrixOverride:
@@ -391,7 +404,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -945,7 +958,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UseCustomMaterial: 0
-  m_CustomMaterial: {fileID: 0}
+  m_CustomMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
 --- !u!114 &1308537936
 MonoBehaviour:
   m_ObjectHideFlags: 0

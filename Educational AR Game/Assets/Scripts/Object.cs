@@ -9,7 +9,7 @@ public class Object : MonoBehaviour
     [SerializeField] private GameObject infoCard;
     [SerializeField] private GameObject arCamera;
 
-    [SerializeField] private float multiplier;
+    public float multiplier;
 
     [SerializeField] private float sensitivity = 0.5f;
 
