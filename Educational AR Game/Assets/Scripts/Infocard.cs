@@ -22,6 +22,10 @@ public class Infocard : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI infocardText;
 
+    private Touch touch;
+
+    private RaycastHit hit;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,11 +45,26 @@ public class Infocard : MonoBehaviour
         //multiplier = (((-transform.localRotation.eulerAngles.x - 0) * 0.15f) / 90) + 0.05f;
 
         //transform.position = prefabHolder.transform.position + (Vector3.up * -(multiplier / 2));
-        transform.position = prefabHolder.transform.position + (Vector3.up * multiplier);
+        transform.position = prefabHolder.transform.position + (prefabHolder.transform.up * multiplier);
 
 
         transform.LookAt(cameraObj.transform, cameraObj.transform.up);
         transform.Rotate(-90f, -180f, 0f);
+
+        if (Input.touches.Length > 0)
+        {
+            touch = Input.touches[0];
+
+            Ray ray = Camera.main.ScreenPointToRay(touch.position);
+
+            if (Physics.Raycast(ray, out hit) && hit.collider.gameObject == this.gameObject)
+            {
+                if (touch.tapCount >= 2)
+                {
+                    StartCoroutine(AnimateOut());
+                }
+            }
+        }
 
         //infocardText.text = $@"X: {transform.localRotation.x}
         //Y: {transform.localRotation.y}
@@ -60,6 +79,7 @@ public class Infocard : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
+        objectObj.transform.localScale = Vector3.zero;
         objectObj.SetActive(true);
         objectObj.GetComponent<Object>().AnimateIn();
 
