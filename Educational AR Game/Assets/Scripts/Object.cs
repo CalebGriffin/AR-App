@@ -29,6 +29,8 @@ public class Object : MonoBehaviour
 
     private Animator animator;
 
+    public bool swipedDown = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,46 +41,77 @@ public class Object : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = prefabHolder.transform.position + (Vector3.up * multiplier);
-
-        isBeingSpun = false;
-
-        if (Input.touches.Length > 0)
+        if (!swipedDown)
         {
-            touch = Input.touches[0];
-            tCurrentPos = new Vector3(touch.position.x, touch.position.y, 0f); 
+            transform.position = prefabHolder.transform.position + (prefabHolder.transform.up * multiplier);
 
-            Ray ray = Camera.main.ScreenPointToRay(touch.position);
+            isBeingSpun = false;
 
-            if (Physics.Raycast(ray, out hit) && hit.collider.gameObject == this.gameObject)
+            if (Input.touches.Length > 0 && Input.touches.Length < 2)
             {
-                touchTime += Time.deltaTime;
-                tPosDelta = tCurrentPos - tPrevPos;
-                transform.RotateAround(transform.position, Vector3.up, -(tPosDelta.x * sensitivity));
-                //transform.Rotate(transform.up, (-Vector3.Dot(tPosDelta, Vector3.right) * sensitivity), Space.Self);
-                //transform.Rotate(0f, (tPosDelta.x * sensitivity), 0f, Space.World);
-                isBeingSpun = true;
+                touch = Input.touches[0];
+                if (touch.deltaPosition.y < -30f)
+                {
+                    SwipeDown();
+                    return;
+                }
+                tCurrentPos = new Vector3(touch.position.x, touch.position.y, 0f); 
+
+                Ray ray = Camera.main.ScreenPointToRay(touch.position);
+
+                if (Physics.Raycast(ray, out hit) && hit.collider.gameObject == this.gameObject)
+                {
+                    if (touch.tapCount >= 2)
+                    {
+                        StartCoroutine(AnimateOut());
+                    }
+                    tPosDelta = tCurrentPos - tPrevPos;
+                    transform.RotateAround(transform.position, Vector3.up, -(tPosDelta.x * sensitivity));
+                    //transform.Rotate(transform.up, (-Vector3.Dot(tPosDelta, Vector3.right) * sensitivity), Space.Self);
+                    //transform.Rotate(0f, (tPosDelta.x * sensitivity), 0f, Space.World);
+                    isBeingSpun = true;
+                }
             }
-            else
+            else if (Input.touches.Length > 0 && Input.touches.Length < 3)
             {
-                touchTime = 0f;
+
+            }
+
+            if (!isBeingSpun)
+            {
+                Debug.Log("isBeingSpun is false");
+                transform.RotateAround(transform.position, Vector3.up, -(spinningSpeed / 10f));
+                //transform.Rotate(transform.up, Vector3.Dot(new Vector3(-(spinningSpeed / 10f), 0f, 0f), Vector3.right), Space.Self);
+                //transform.Rotate(0f, 1 * sensitivity, 0f, Space.World);
+            }
+
+            tPrevPos = tCurrentPos;
+        }
+        else
+        {
+            if (Input.touches.Length > 0)
+            {
+                touch = Input.touches[0];
+                if (touch.deltaPosition.y > 30f)
+                {
+                    SwipeUp();
+                }
             }
         }
+    }
 
-        if (touchTime >= 1f)
-        {
-            StartCoroutine(AnimateOut());
-        }
+    public void SwipeDown()
+    {
+        transform.position = prefabHolder.transform.position;
+        transform.localScale -= transform.localScale * 0.1f;
+        swipedDown = true;
+    }
 
-        if (!isBeingSpun)
-        {
-            Debug.Log("isBeingSpun is false");
-            transform.RotateAround(transform.position, Vector3.up, -(spinningSpeed / 10f));
-            //transform.Rotate(transform.up, Vector3.Dot(new Vector3(-(spinningSpeed / 10f), 0f, 0f), Vector3.right), Space.Self);
-            //transform.Rotate(0f, 1 * sensitivity, 0f, Space.World);
-        }
-
-        tPrevPos = tCurrentPos;
+    public void SwipeUp()
+    {
+        transform.position = prefabHolder.transform.position + (prefabHolder.transform.up * multiplier);
+        transform.localScale += transform.localScale * 10f;
+        swipedDown = false;
     }
 
     IEnumerator AnimateOut()
@@ -91,7 +124,6 @@ public class Object : MonoBehaviour
         infoCard.transform.localScale = Vector3.zero;
         infoCard.SetActive(true);
         infoCard.GetComponent<Infocard>().AnimateIn();
-        infoCard.GetComponent<Infocard>().isActive = true;
 
         this.gameObject.SetActive(false);
     }
