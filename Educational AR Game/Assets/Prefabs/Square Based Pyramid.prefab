@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 605369306169830414}
   - component: {fileID: 4712613894091383576}
   - component: {fileID: 605369306169830415}
+  - component: {fileID: 1629876811691921499}
   m_Layer: 0
   m_Name: Info Card
   m_TagString: Untagged
@@ -90,6 +91,19 @@ MonoBehaviour:
   multiplier: 0
   isActive: 0
   infocardText: {fileID: 7000472044459787335}
+--- !u!65 &1629876811691921499
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335480775155667291}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6, y: 0.4, z: 6}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &335480775570461223
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,11 +132,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 335480775570461223}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.05, z: 0}
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_Children: []
-  m_Father: {fileID: 605369306707185728}
+  m_Father: {fileID: 1844560077016092985}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4054320232039630648
@@ -256,7 +270,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1147306644240713885}
+  - {fileID: 1844560077016092985}
   - {fileID: 1147306643572132833}
   - {fileID: 4880449445102365522}
   m_Father: {fileID: 0}
@@ -276,6 +290,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectObj: {fileID: 335480775570461223}
   infocardObj: {fileID: 335480775155667291}
+--- !u!1 &1471038702470417292
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1844560077016092985}
+  - component: {fileID: 4046869534929135428}
+  m_Layer: 0
+  m_Name: Rotation Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1844560077016092985
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1471038702470417292}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1147306644240713885}
+  m_Father: {fileID: 605369306707185728}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4046869534929135428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1471038702470417292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 298f0e02b9da34244a1fa6de318fdd39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabHolder: {fileID: 605369306707185729}
 --- !u!1 &4963499962666125561
 GameObject:
   m_ObjectHideFlags: 0
