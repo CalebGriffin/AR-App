@@ -16,7 +16,6 @@ public class CameraAccelerometer : MonoBehaviour
     void Start()
     {
         rigid = GetComponent<Rigidbody>();
-        
     }
 
     // Update is called once per frame
@@ -27,16 +26,11 @@ public class CameraAccelerometer : MonoBehaviour
         tilt = Quaternion.Euler(0f, 0f, 0f) * tilt;
         tilt.z = -tilt.z;
 
-        rigid.AddForce(tilt * 2f);
+        rigid.AddForce(tilt * 10f);
+    }
 
-        //currentTilt = Input.acceleration + new Vector3(0f, 90f, 0f);
-
-        //currentTilt.z = -currentTilt.z;
-
-        //deltaTilt = currentTilt - prevTilt;
-
-        //prevTilt = currentTilt;
-
-        //transform.Rotate(deltaTilt * 90f);
+    public void PhysicsToggle()
+    {
+        rigid.isKinematic = !rigid.isKinematic;
     }
 }
