@@ -1,0 +1,33 @@
+draft for 2D shape info
+{
+    1:
+        This is a [shape name]
+    2:
+        It is a 2D shape
+    3:
+        It has [no of sides] sides
+    4:
+        It has [no of corners] corners/vertices
+    5:
+        It has [either right or acute or no] angles
+    6:
+        It has [no of lines of symmetry] lines of symmetry
+    7:
+        It has [no of parallel lines] set[s] of parallel lines and [no of perpendicular lines] set[s] of perpendicular lines
+}
+
+draft for 3D shape info
+{
+    1:
+        This is a [shape name]
+    2:
+        It is a 3D shape
+    3:
+        It has [no of faces] faces
+    4:
+        It has [no of edges] edges
+    5:
+        It has [no of corners] corners/vertices
+    6:
+        It's faces are [2D shapes]
+}
