@@ -77,9 +77,11 @@ public class ImageTracking : MonoBehaviour
         string name = trackedImage.referenceImage.name;
         testText.text = name;
         Vector3 position = trackedImage.transform.position;
+        Quaternion rotation = trackedImage.transform.rotation;
 
         GameObject prefab = spawnedPrefabs[name];
         prefab.transform.position = position;
+        prefab.transform.rotation = rotation;
         prefab.transform.localScale = new Vector3(trackedImage.size.x * 2, trackedImage.size.x * 2, trackedImage.size.y * 2);
         if (prefab.activeSelf == false)
         {

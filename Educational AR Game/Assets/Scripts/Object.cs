@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 [RequireComponent(typeof(Animator))]
 public class Object : MonoBehaviour
@@ -8,6 +9,7 @@ public class Object : MonoBehaviour
     [SerializeField] private GameObject prefabHolder;
     [SerializeField] private GameObject infoCard;
     [SerializeField] private GameObject arCamera;
+    [SerializeField] private GameObject planeObj;
 
     public float multiplier;
 
@@ -25,17 +27,23 @@ public class Object : MonoBehaviour
 
     private bool isBeingSpun;
 
-    private float touchTime;
-
     private Animator animator;
 
     public bool swipedDown = false;
+    private float timeElapsed = 0f;
+    private float lerpDuration = 5f;
+    [SerializeField] private float lerpWaitTime = 0.0f;
+    private bool lerpDown = false;
+    private bool lerpUp = false;
+    private bool isAnimating = false;
+    [SerializeField] private GameObject textOnPlane;
 
     // Start is called before the first frame update
     void Start()
     {
         arCamera = GameObject.FindGameObjectWithTag("MainCamera");
         animator = GetComponent<Animator>();
+        textOnPlane.GetComponent<TextMeshProUGUI>().text = prefabHolder.name;
     }
 
     // Update is called once per frame
@@ -43,24 +51,44 @@ public class Object : MonoBehaviour
     {
         if (!swipedDown)
         {
-            transform.position = prefabHolder.transform.position + (prefabHolder.transform.up * multiplier);
+            if (!Mathf.Approximately(transform.position.y, (prefabHolder.transform.position.y + multiplier)) && lerpUp)
+            {
+                if (timeElapsed < lerpDuration)
+                {
+                    transform.position = Vector3.Lerp(transform.position, (prefabHolder.transform.position + (prefabHolder.transform.up * multiplier)), timeElapsed / lerpDuration);
+                    timeElapsed += Time.deltaTime;
+                }
+                else
+                {
+                    transform.position = prefabHolder.transform.position + (prefabHolder.transform.up * multiplier);
+                    timeElapsed = 0f;
+                    lerpUp = false;
+                }
+            }
+            else
+            {
+                transform.position = prefabHolder.transform.position + (prefabHolder.transform.up * multiplier);
+            }
+
+            //transform.position = prefabHolder.transform.position + (prefabHolder.transform.up * multiplier);
 
             isBeingSpun = false;
 
             if (Input.touches.Length > 0 && Input.touches.Length < 2)
             {
                 touch = Input.touches[0];
-                if (touch.deltaPosition.y < -30f)
-                {
-                    SwipeDown();
-                    return;
-                }
                 tCurrentPos = new Vector3(touch.position.x, touch.position.y, 0f); 
 
                 Ray ray = Camera.main.ScreenPointToRay(touch.position);
 
                 if (Physics.Raycast(ray, out hit) && hit.collider.gameObject == this.gameObject)
                 {
+                    if (touch.deltaPosition.y < -30f && !isAnimating)
+                    {
+                        StartCoroutine(SwipeDown());
+                        return;
+                    }
+
                     if (touch.tapCount >= 2)
                     {
                         StartCoroutine(AnimateOut());
@@ -89,41 +117,95 @@ public class Object : MonoBehaviour
         }
         else
         {
+            if (!Mathf.Approximately(transform.position.y, prefabHolder.transform.position.y) && lerpDown)
+            {
+                if (timeElapsed < lerpDuration)
+                {
+                    transform.position = Vector3.Lerp(transform.position, prefabHolder.transform.position, timeElapsed / lerpDuration);
+                    timeElapsed += Time.deltaTime;
+                }
+                else
+                {
+                    timeElapsed = 0f;
+                    transform.position = prefabHolder.transform.position;
+                    lerpDown = false;
+                }
+            }
             if (Input.touches.Length > 0)
             {
                 touch = Input.touches[0];
-                if (touch.deltaPosition.y > 30f)
+
+                Ray ray = Camera.main.ScreenPointToRay(touch.position);
+
+                if (Physics.Raycast(ray, out hit) && hit.collider.gameObject == planeObj)
                 {
-                    SwipeUp();
+                    if (touch.deltaPosition.y > 30f && !isAnimating)
+                    {
+                        StartCoroutine(SwipeUp());
+                    }
                 }
             }
         }
     }
 
-    public void SwipeDown()
+    void FixedUpdate()
     {
-        transform.position = prefabHolder.transform.position;
-        transform.localScale -= transform.localScale * 0.1f;
-        swipedDown = true;
+
     }
 
-    public void SwipeUp()
+    public IEnumerator SwipeDown()
     {
-        transform.position = prefabHolder.transform.position + (prefabHolder.transform.up * multiplier);
-        transform.localScale += transform.localScale * 10f;
-        swipedDown = false;
+        if (!isAnimating)
+        {
+            Debug.Log(this.gameObject.name + " Swipe Down");
+            //animator.SetTrigger("Exit");
+            animator.Play("Base Layer.ExitAnimation");
+            lerpDown = true;
+            yield return new WaitForSeconds(lerpWaitTime);
+            textOnPlane.SetActive(true);
+            //transform.position = prefabHolder.transform.position;
+            //transform.localScale -= transform.localScale * 0.1f;
+            swipedDown = true;
+            isAnimating = true;
+            StartCoroutine(IsAnimatingChanger());
+        }
+    }
+
+    public IEnumerator SwipeUp()
+    {
+        if (!isAnimating)
+        {
+            Debug.Log(this.gameObject.name + " Swipe Up");
+            //animator.SetTrigger("Enter");
+            animator.Play("Base Layer.EnterAnimation");
+            lerpUp = true;
+            swipedDown = false;
+            yield return new WaitForSeconds(0f);
+            //transform.position = prefabHolder.transform.position + (prefabHolder.transform.up * multiplier);
+            //transform.localScale += transform.localScale * 10f;
+            textOnPlane.SetActive(false);
+            isAnimating = true;
+            StartCoroutine(IsAnimatingChanger());
+        }
+    }
+
+    IEnumerator IsAnimatingChanger()
+    {
+        yield return new WaitForSeconds(1f);
+        isAnimating = false;
     }
 
     IEnumerator AnimateOut()
     {
         // Play the exit animation
         animator.Play("Base Layer.ExitAnimation");
+        //animator.SetTrigger("Exit");
 
         yield return new WaitForSeconds(1f);
 
-        infoCard.transform.localScale = Vector3.zero;
         infoCard.SetActive(true);
-        infoCard.GetComponent<Infocard>().AnimateIn();
+        //infoCard.GetComponent<Infocard>().AnimateIn();
+        infoCard.SendMessage("AnimateIn");
 
         this.gameObject.SetActive(false);
     }
@@ -132,6 +214,7 @@ public class Object : MonoBehaviour
     {
         // Play the enter animation
         animator.Play("Base Layer.EnterAnimation");
+        //animator.SetTrigger("Enter");
     }
 
     //void OnBecameInvisible()

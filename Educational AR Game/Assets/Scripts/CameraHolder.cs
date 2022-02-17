@@ -18,4 +18,9 @@ public class CameraHolder : MonoBehaviour
         transform.position = cameraObj.transform.position;
         transform.localRotation = cameraObj.transform.localRotation;
     }
+
+    public Camera GetCamera()
+    {
+        return cameraObj.GetComponent<Camera>();
+    }
 }
