@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class PrefabHolder : MonoBehaviour
 {
-    [SerializeField] private GameObject objectObj;
-    [SerializeField] private GameObject infocardObj;
+    [SerializeField] private GameObject objectObj; // Reference to the shape object so this object can set is active
+    [SerializeField] private GameObject infocardObj; // Reference to the infocard object // UNUSED
 
     // Start is called before the first frame update
     void Start()
     {
+        // UNUSED
         //objectObj.SetActive(false);
         //infocardObj.SetActive(false);
     }
@@ -20,6 +21,7 @@ public class PrefabHolder : MonoBehaviour
         
     }
 
+    // When this object is enabled, enable the shape object and call it's starting animation
     public void Enable()
     {
         //objectObj.transform.localScale = Vector3.zero;
@@ -27,6 +29,7 @@ public class PrefabHolder : MonoBehaviour
         objectObj.GetComponent<Object>().AnimateIn();
     }
 
+    // UNUSED
     void OnDisable()
     {
         //objectObj.SetActive(false);

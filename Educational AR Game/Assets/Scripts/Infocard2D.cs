@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// This class inherits from the Infocard class and adds the relevant information to the infocard object
 public class Infocard2D : Infocard
 {
-    [SerializeField] private ShapeInfo2D shapeInfo2D;
+    [SerializeField] private ShapeInfo2D shapeInfo2D; // The scriptable object that has all of the shape information which will be on the infocard object
 
+    // Set up the text for each text box on the infocard by first checking that the text box exists
     protected override void TextSetUp()
     {
         if (textboxObjs.Length - 1 >= 0)
