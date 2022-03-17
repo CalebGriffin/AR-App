@@ -18,8 +18,12 @@ public class Object : MonoBehaviour
 
     [SerializeField] private float spinningSpeed = 7f; // Float to control how fast the shape spins when not being touched
 
-    public Vector3 tPrevPos = Vector3.zero; // The previous touch position
-    public Vector3 tPosDelta = Vector3.zero; // The difference between the current touch position and the previous touch position
+    private Vector3 tPrevPos = Vector3.zero; // The previous touch position
+    private Vector3 tPosDelta = Vector3.zero; // The difference between the current touch position and the previous touch position
+
+    public Vector3 TPrevPos { get; private set; } // Public get and private set so that the value cannot be changed but can be referenced
+    public Vector3 TPosDelta { get; private set; } // Public get and private set so that the value cannot be changed but can be referenced
+
 
     private Touch touch; // Used to store information about the users touch
     private Vector3 tCurrentPos = Vector3.zero; // The current touch position
